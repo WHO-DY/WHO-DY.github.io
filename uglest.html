@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <tbody>
+            <table>
+                <tr >請寫下最不爽的那位英文名字</tr>
+                <tr id="uglestName"></tr>
+                <tr id="generateTr">
+                    <td><button onclick=generateWord()>點我</button></td>
+                    <td id="generateResult"></td>
+                </tr>
+                <tr id="addTr">
+                    <td><button onclick=addWord()>添加</button></td>
+                    <td><button onclick=deleteWord()>移除</button></td>
+                </tr>
+            </div>
+            </table>
+        </tbody>
+    </body>
+</html>
+<style>
+    tr {
+        height: 10px;
+    }
+    td {
+        padding:10px;
+    }
+</style>
+<script>
+    const alphaSize = 26;
+    const pbSize = 26 + 1; // first should 0
+    const facor    = [  5,   2,   3,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1,   
+                        1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1];
+    const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+                      "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    randomGain = 1;
+    arrPb = new Array(pbSize);
+    
+    function addWord() {
+        console.log("in addWord");
+        var szUglestName = $("#uglestName").text();
+        var szWord = $("#generateResult").text();
+        console.log("uglestName : " + szUglestName + "word : " + szWord + "new : " + szUglestName + szWord);
+        $("#uglestName").text(szUglestName + szWord);
+    }
+
+    function deleteWord() {
+        console.log("in deleteWord");
+        var szUglestName = $("#uglestName").text();
+        console.log("uglestName : " + szUglestName + "new : " + $("#uglestName").text());
+        $("#uglestName").text(szUglestName.slice(0, -1));
+    }
+
+    function generateWord() {
+        console.log("in generateWord");
+        randomNum = Math.random() * randomGain;
+        console.log("randomNum : " + randomNum);
+        var frontIdx = 0, rearIdx = pbSize - 1, midIdx = Math.trunc((frontIdx + rearIdx) / 2);
+        while (1) {
+            if (1 >= Math.abs(rearIdx - frontIdx)) {
+                break;
+            }
+            if (arrPb[midIdx] < randomNum) {
+                frontIdx = midIdx;
+            }
+            else {
+                rearIdx = midIdx;
+            }
+            midIdx = Math.trunc((frontIdx + rearIdx) / 2);
+        }
+        console.log("get word : " + alphabet[frontIdx]);
+        $("#generateResult").text(alphabet[frontIdx]);
+    }
+
+    (function () {
+        console.log("in main");
+        randomGain = facor.reduce((acc, num) => acc + num, 0);
+        arrPb[0] = 0;
+        for (var i = 1; i < pbSize; i++) {
+            arrPb[i] = arrPb[i - 1] + facor[i - 1];
+        }
+        console.log(arrPb);
+    }) ();
+</script>
