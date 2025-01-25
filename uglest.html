@@ -4,7 +4,7 @@
     </head>
     <body>
         <tbody>
-            <div style="padding:10px; font-weight: bold; font-size: 40px;">香蕉英文</div>
+            <div style="padding:10px; font-weight: bold; font-size: 40px;">蘋果英文</div>
             <div style="height: 40px; padding:10px" id="uglestName"><span></span></div>
             <table>
                 <tr id="generateTr">
@@ -39,17 +39,18 @@
 <script>
     const gAlphaSize = 26;
     const gPbSize = gAlphaSize + 1; // first should 0
-    const gFactor   = [  1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1,   
-                         1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1];
+    const gFactor   = [  1,  40,  40,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1,   
+                         1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,  40];
     const gAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
                        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     gRandomGain = 1;
     garrPb = new Array(gPbSize);
-    
+    const gAns = "APPLE"
+
     function sent() {
         //console.log("in sent");
         var szUglestName = $("#uglestName > span").text();
-        if ("BANANA" == szUglestName) {
+        if (gAns == szUglestName) {
             $("#result").text("答對是應該的");
         }
         else {
