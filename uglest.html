@@ -43,7 +43,7 @@
     arrPb = new Array(pbSize);
     
     function sent() {
-        console.log("in sent");
+        //console.log("in sent");
         var szUglestName = $("#uglestName").text();
         if ("banana" == szUglestName) {
             $("#result").text("答對應該的");
@@ -57,21 +57,21 @@
         console.log("in addWord");
         var szUglestName = $("#uglestName").text();
         var szWord = $("#generateResult").text();
-        console.log("uglestName : " + szUglestName + "word : " + szWord + "new : " + szUglestName + szWord);
+        //console.log("uglestName : " + szUglestName + " word : " + szWord + " new : " + szUglestName + szWord);
         $("#uglestName").text(szUglestName + szWord);
     }
 
     function deleteWord() {
-        console.log("in deleteWord");
+        //console.log("in deleteWord");
         var szUglestName = $("#uglestName").text();
-        console.log("uglestName : " + szUglestName + "new : " + $("#uglestName").text());
+        //console.log("uglestName : " + szUglestName + " new : " + $("#uglestName").text());
         $("#uglestName").text(szUglestName.slice(0, -1));
     }
 
     function generateWord() {
-        console.log("in generateWord");
+        //console.log("in generateWord");
         randomNum = Math.random() * randomGain;
-        console.log("randomNum : " + randomNum);
+        //console.log("randomNum : " + randomNum);
         var frontIdx = 0, rearIdx = pbSize - 1, midIdx = Math.trunc((frontIdx + rearIdx) / 2);
         while (1) {
             if (1 >= Math.abs(rearIdx - frontIdx)) {
@@ -85,17 +85,17 @@
             }
             midIdx = Math.trunc((frontIdx + rearIdx) / 2);
         }
-        console.log("get word : " + alphabet[frontIdx]);
+        //console.log("get word : " + alphabet[frontIdx]);
         $("#generateResult").text(alphabet[frontIdx]);
     }
 
     (function () {
-        console.log("in main");
+        //console.log("in main");
         randomGain = facor.reduce((acc, num) => acc + num, 0);
         arrPb[0] = 0;
         for (var i = 1; i < pbSize; i++) {
             arrPb[i] = arrPb[i - 1] + facor[i - 1];
         }
-        console.log(arrPb);
+        //console.log(arrPb);
     }) ();
 </script>
