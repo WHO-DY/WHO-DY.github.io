@@ -5,7 +5,7 @@
     <body>
         <tbody>
             <table>
-                <tr >請寫下最不爽的那位英文名字</tr>
+                <tr >香蕉英文</tr>
                 <tr id="uglestName"></tr>
                 <tr id="generateTr">
                     <td><button onclick=generateWord()>點我</button></td>
@@ -14,6 +14,10 @@
                 <tr id="addTr">
                     <td><button onclick=addWord()>添加</button></td>
                     <td><button onclick=deleteWord()>移除</button></td>
+                </tr>
+                <tr id="addTr">
+                    <td><button onclick=sent()>確定</button></td>
+                    <td id="result"></td>
                 </tr>
             </div>
             </table>
@@ -31,13 +35,24 @@
 <script>
     const alphaSize = 26;
     const pbSize = 26 + 1; // first should 0
-    const facor    = [  5,   2,   3,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1,   
-                        1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1];
+    const facor    = [  1,   1,   40,   1,   1,   1,   1,   1,   1,   1,   1,   1,  1,   
+                        1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,  40];
     const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
                       "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     randomGain = 1;
     arrPb = new Array(pbSize);
     
+    function sent() {
+        console.log("in sent");
+        var szUglestName = $("#uglestName").text();
+        if ("banana" == szUglestName) {
+            $("#result").text("答對應該的");
+        }
+        else {
+            $("#result").text("答錯，英文重學了啦");
+        }
+    }
+
     function addWord() {
         console.log("in addWord");
         var szUglestName = $("#uglestName").text();
